@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Suraksha-AI</title>
+
+  <!-- ✅ This should be correct -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+
+  <!-- Optional fonts/icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li onclick="showScreen('detection-screen')">Detection</li>
+      <li onclick="showScreen('nutrition-screen')">Nutrition</li>
+      <li onclick="showScreen('symptom-screen')">Symptoms</li>
+      <li onclick="showScreen('doctor-screen')">Doctor Connect</li>
+      <li onclick="showScreen('timeline-screen')">Timeline</li>
+      <li onclick="showScreen('schemes-screen')">Schemes</li>
+    </ul>
+  </nav>
+
+  <!-- Detection -->
+  <div id="detection-screen" class="screen">
+    <h2>Upload Image for Detection</h2>
+    <input type="file" id="imageInput" />
+    <button onclick="uploadImage()">Predict</button>
+    <div id="result"></div>
+  </div>
+
+  <!-- Nutrition -->
+  <div id="nutrition-screen" class="screen hidden">
+    <h2>Nutrition Guide</h2>
+    <ul>
+      <li><input type="checkbox"> Dal (Lentils)</li>
+      <li><input type="checkbox"> Leafy Greens</li>
+      <li><input type="checkbox"> Jaggery</li>
+      <li><input type="checkbox"> Eggs / Milk</li>
+    </ul>
+    <button onclick="showReminder('iron')">Remind for Iron Tablet</button>
+  </div>
+
+  <!-- Symptoms -->
+  <div id="symptom-screen" class="screen hidden">
+    <h2>Symptom Checker</h2>
+    <form id="symptom-form">
+      <label><input type="checkbox" value="fever"> High fever</label><br>
+      <label><input type="checkbox" value="dizziness"> Dizziness</label><br>
+      <label><input type="checkbox" value="swelling"> Swelling</label><br>
+      <label><input type="checkbox" value="bleeding"> Bleeding</label><br>
+      <label><input type="checkbox" value="no-movement"> No fetal movement</label><br><br>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <!-- Doctor Connect -->
+  <div id="doctor-screen" class="screen hidden">
+    <h2>Doctor Connect</h2>
+    <p>Your last result: <span id="last-result">None</span></p>
+    <button onclick="generatePDF()">Download Report</button>
+    <a href="https://wa.me/?text=Sending%20my%20Suraksha-AI%20report" target="_blank">Send via WhatsApp</a>
+  </div>
+
+  <!-- Timeline -->
+  <div id="timeline-screen" class="screen hidden">
+    <h2>Pregnancy Timeline</h2>
+    <ul>
+      <li>Week 4: Pregnancy confirmed</li>
+      <li>Week 12: Blood + urine test</li>
+      <li>Week 16: Iron injection</li>
+      <li>Week 20: Ultrasound scan</li>
+      <li>Week 28: Repeat anemia test</li>
+    </ul>
+  </div>
+
+  <!-- Government Schemes -->
+  <div id="schemes-screen" class="screen hidden">
+    <h2>Government Schemes</h2>
+    <ul>
+      <li><strong>Janani Suraksha Yojana</strong> – ₹1400 for institutional delivery</li>
+      <li><strong>PMMVY</strong> – ₹5000 for first pregnancy</li>
+    </ul>
+    <a href="#">Check eligibility</a> | <a href="#">Apply now</a>
+  </div>
+
+  <!-- Voice Button (Global Test) -->
+  <button onclick="speak('Your hemoglobin is low. Please eat iron-rich food.')">🔊 Listen</button>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
